@@ -26,16 +26,16 @@ Max period:
 
 Stock market open and close time in your local time.
 
-
 #########################EquityList.txt###########################
 yahoo stock id, max 40 stocks, min 2 stocks
 Canada stock suffix is .TO, such as SHOP.TO, WELL.TO
 Shanhai stock suffix is .SS such as 600660.SS (Fuyao Glass Industry Group Co., Ltd. )
 Shengzhen stock suffix is .SZ such as 000002.SZ (China Vanke Co., Ltd.)
+###################################################################
 
 #################$###########--App--###############################
 Date format:
-Equity,Date(time),Open,high,low,adjustclose,close(most recent price),volume
+Equity,Date(time),close(most recent price),high,low,Open,volume
 
 when retrieve date by 2s, 5s, 15s, 30s, the volumne may not reflect actual value
 Stock markets of China may delay 15 mins

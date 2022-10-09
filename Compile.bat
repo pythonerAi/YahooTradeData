@@ -1,1 +1,1 @@
-pyinstaller YahooTradeData.py -i YahooTradeData.ico
+C:\Users\robin\AppData\Roaming\Python\Python313\Scripts\pyinstaller --onefile YahooTradeData.py -i YahooTrade.ico

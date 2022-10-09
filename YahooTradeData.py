@@ -29,6 +29,7 @@ def historical():
     tickers = MyApp.tickers()
     MyTD.get_new(tickers, MyApp.interval)
 
+
 MyLog = log.Log()
 MyApp = App.App()
 MyTD = TD.TradeData()

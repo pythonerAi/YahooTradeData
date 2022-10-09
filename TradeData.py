@@ -21,6 +21,8 @@ class TradeData:
         self.Log = log.Log()
         self.showMessage = True
         self.logMessage = True
+
+        print(yf.__version__)
         return
 
     def get_new(self, tickers, interval):
@@ -58,14 +60,16 @@ class TradeData:
             else:
                 validtime = self.get_validstart(interval)
                 if interval == "1d":
-                    data = yf.download(ticker)
+                    data = yf.download(ticker, start=datetime.date(1770, 1, 1))
                 else:
                     data = yf.download(ticker, interval=interval, start=validtime)
 
             if len(data) > 0:
-                f = open(filename, "a")
+                os.makedirs(".\\Data", exist_ok=True)
+                f = open(filename, "a+")
+                f.write('Ticker, Date(time), close, high, low, Open, volume' + "\n")
                 cnt = len(data)
-                before = dt.now()
+                before = dt.now().replace(hour=0, minute=0, second=0, microsecond=0)
                 seq = 0
                 for tradetime, market in data.iterrows():
                     #set formated tradetime
@@ -107,8 +111,9 @@ class TradeData:
         data = yf.download(str_tickers, interval="1m", start=start, group_by="ticker")
 
         for ticker in tickers:
-
+            os.makedirs(".\\Data", exist_ok=True)
             f = open(".\\Data\\" + ticker + "_" + self.interval + ".csv", "a")
+            f.write('Ticker, Date(time), close, high, low, Open, volume' + "\n")
 
             if len(data[ticker]) > 0:
                 for time_, market in data[ticker].iterrows():
@@ -150,28 +155,24 @@ class TradeData:
         if math.isnan(market[0]):
             return -1
         else:
-            market[0] = round(market[0], 4)
+            market[0] = round(market[0], 3)
 
         if math.isnan(market[1]):
             return -1
         else:
-            market[1] = round(market[1], 4)
+            market[1] = round(market[1], 3)
         if math.isnan(market[2]):
             return -1
         else:
-            market[2] = round(market[2], 4)
+            market[2] = round(market[2], 3)
         if math.isnan(market[3]):
             return -1
         else:
-            market[3] = round(market[3], 4)
+            market[3] = round(market[3], 3)
         if math.isnan(market[4]):
             return -1
         else:
-            market[4] = round(market[4], 4)
-        if math.isnan(market[5]):
-            return -1
-        else:
-            market[5] = round(market[5], 4)
+            market[4] = round(market[4])
 
         return 1
 
