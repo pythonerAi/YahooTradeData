@@ -16,7 +16,7 @@
 
 
 #########################Config.ini###########################
-Interval could be: 1d, 1h, 2m, 1m, 2s,5s,15s
+Interval could be: 1d, 1h, 2m, 1m,
 Max period:
 1d: all history data for each day
 1h: last 2 year's data for every one hour
